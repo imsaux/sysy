@@ -1,7 +1,8 @@
 # -*- coding:utf-8 -*-
-
+# todo win10下还需适配
 import os
 import time
+import multiprocessing
 
 class sy_serial():
     def __init__(self):
@@ -13,21 +14,21 @@ class sy_serial():
 
     def windows_init(self):
         try:
-            pass
+            import _serial
         except ModuleNotFoundError:
-            os.system('python3 -m pip install serial')
-            print('installing serial...')
+            os.system('python3 -m pip install pyserial')
+            print('installing pyserial...')
             time.sleep(120)
             try:
-                pass
+                import _serial
             except:
                 print('damn...')
 
     def linux_init(self):
         try:
             import pty
-        except:
-            pass
+        except ModuleNotFoundError:
+            os.system('python3 -m pip install pty')
 
     def serial_write_data(self, serial, _data):
         #   单行数据
